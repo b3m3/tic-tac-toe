@@ -1,4 +1,10 @@
-body {background-color: rgb(29, 29, 29);color: rgb(218, 218, 218);}
+@import url('icons.css');
+body {background-color: #1d1d1d;color: #ffffff;}
+
+body.light {
+    background-color:#ffffff;
+    color: #1d1d1d;
+}
 
 .page {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -25,14 +31,15 @@ body {background-color: rgb(29, 29, 29);color: rgb(218, 218, 218);}
     user-select: none;
     text-align: center;
     font-size: 46px;
-    color: rgb(117, 117, 117);
 }
 
 .box {
+    user-select: none;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 28px;
     width: 80px;
     height: 80px;
     border: 1px solid rgb(48, 48, 48);
@@ -43,13 +50,13 @@ body {background-color: rgb(29, 29, 29);color: rgb(218, 218, 218);}
 .box:hover {
     border: 1px solid rgb(71, 71, 71);
     background-color: rgb(44, 44, 44);
-    transform: scale(1.01);
 }
 
 .restart {
+    user-select: none;
     border-radius: 5px;
     background-color: rgb(37, 37, 37);
-    box-shadow: 0 0 6px 2px rgba(255, 255, 255, .1);
+    box-shadow: 0 0 2px 1px rgba(255, 255, 255, .1);
     color: rgb(117, 117, 117);
     font-size: 14px;
     padding: 6px 18px;
@@ -58,6 +65,25 @@ body {background-color: rgb(29, 29, 29);color: rgb(218, 218, 218);}
 }
 
 .restart:hover {
-    box-shadow: 0 0 9px 2px rgba(255, 255, 255, .2);
+    box-shadow: 0 0 5px 3px rgba(255, 255, 255, .2);
     color: rgb(255, 255, 255);
+    background-color: rgb(44, 44, 44);
+}
+
+.soundStatus {
+    cursor: pointer;
+    position: absolute;
+    display: block;
+    right: 20px;
+    top: 20px;
+    font-size: 20px;
+}
+
+.themeStatus {
+    cursor: pointer;
+    position: absolute;
+    display: block;
+    right: 60px;
+    top: 20px;
+    font-size: 20px;
 }
