@@ -23,15 +23,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-sun:before {
-  content: "\e9d4";
-}
-.icon-brightness-contrast:before {
-  content: "\e9d6";
-}
-.icon-volume-high:before {
+.icon-high:before {
   content: "\ea26";
 }
-.icon-volume-mute2:before {
+.icon-mute:before {
   content: "\ea2a";
 }

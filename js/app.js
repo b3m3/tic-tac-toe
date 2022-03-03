@@ -3,8 +3,8 @@ window.addEventListener('DOMContentLoaded', () => {
     const boxes = document.querySelectorAll('.box');
     const title = document.querySelector('.title');
     const restartBtn = document.querySelector('.restart');
+    const sounds = document.querySelectorAll('.sound');
     const soundStatus = document.querySelector('.soundStatus');
-    const themeStatus = document.querySelector('.themeStatus');
     const soundStep = document.querySelector('.step');
     const soundWin = document.querySelector('.win');
     const soundDraw = document.querySelector('.draw');
@@ -19,7 +19,7 @@ window.addEventListener('DOMContentLoaded', () => {
         wrapp.style.pointerEvents = 'none';
         sound.play();
         restartBtn.style.cssText = `
-            box-shadow: 0 0 5px 3px rgba(255, 255, 255, .2);
+            box-shadow: 0 0 5px 3px rgba(63, 63, 63, 0.2);
             color: rgb(255, 255, 255);
             background-color: rgb(44, 44, 44);
         `;
@@ -60,16 +60,13 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    const toggleStatus = (elem, lSName, lSStatusOn, lSStatusOff, activeBefore, activeAfter) => {
-
-        if (elem.classList.contains(activeBefore)) {
-            elem.classList.remove(activeBefore);
-            elem.classList.add(activeAfter);
-            localStorage.setItem(lSName, lSStatusOn);
+    const toggleIconStatus = (element, currentClass, nextClass) => {
+        if (element.classList.contains(currentClass)) {
+            element.classList.remove(currentClass);
+            element.classList.add(nextClass);
         } else {
-            elem.classList.add(activeBefore);
-            elem.classList.remove(activeAfter);
-            localStorage.setItem(lSName, lSStatusOff);
+            element.classList.add(currentClass);
+            element.classList.remove(nextClass);
         }
     };
 
@@ -87,10 +84,24 @@ window.addEventListener('DOMContentLoaded', () => {
     });
 
     soundStatus.addEventListener('click', () => {
-        toggleStatus(soundStatus, 'sound', 'on', 'off', 'icon-volume-mute2', 'icon-volume-high');
+        toggleIconStatus(soundStatus, 'icon-high', 'icon-mute');
+
+        if (soundStatus.classList.contains('icon-high')) {
+            localStorage.setItem('sound', 'high');
+            sounds.forEach(sound => sound.muted = false);
+        } else {
+            localStorage.setItem('sound', 'mute');
+            sounds.forEach(sound => sound.muted = true);
+        }
     });
 
-    themeStatus.addEventListener('click', () => {
-        toggleStatus(themeStatus, 'theme', 'light', 'dark', 'icon-brightness-contrast', 'icon-sun');
-    });
+    if (localStorage.getItem('sound') === 'mute') {
+        soundStatus.classList.add('icon-mute');
+        soundStatus.classList.remove('icon-high');
+        sounds.forEach(sound => sound.muted = true);
+    } else {
+        soundStatus.classList.remove('icon-mute');
+        soundStatus.classList.add('icon-high');
+        sounds.forEach(sound => sound.muted = false);
+    }
 });
