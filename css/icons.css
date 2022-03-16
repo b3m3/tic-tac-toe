@@ -23,9 +23,16 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-cross:before {
+  content: "\ea0f";
+}
 .icon-high:before {
   content: "\ea26";
 }
 .icon-mute:before {
   content: "\ea2a";
+}
+.icon-radio:before {
+  content: "\ea56";
+  font-weight: bolder;
 }

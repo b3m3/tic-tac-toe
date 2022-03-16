@@ -15,7 +15,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
     const addStyle = (sound, status) => {
         title.textContent = `${status}`;
-        wrapp.style.opacity = '.2';
+        title.style.animation = 'animtitle .7s linear';
+        wrapp.style.opacity = '.45';
         wrapp.style.pointerEvents = 'none';
         sound.play();
         restartBtn.style.cssText = `
@@ -29,9 +30,9 @@ window.addEventListener('DOMContentLoaded', () => {
         stepCounter++;
 
         if (stepCounter % 2 === 1) {
-            elem.innerHTML = '&#10006;';
+            elem.classList.add('icon-cross');
         } else {
-            elem.innerHTML = '&#9675;';
+            elem.classList.add('icon-radio');
         }
     };
 
@@ -48,14 +49,14 @@ window.addEventListener('DOMContentLoaded', () => {
 
     const findOutTheWinner = () => {
         for (const key in winPositions) {
-            if (boxes[winPositions[key][0]].textContent === '✖' &&
-                boxes[winPositions[key][1]].textContent === '✖' &&
-                boxes[winPositions[key][2]].textContent === '✖') {
-                winner('"✖" is Win !');
-            } else if (boxes[winPositions[key][0]].textContent === '○' &&
-                boxes[winPositions[key][1]].textContent === '○' &&
-                boxes[winPositions[key][2]].textContent === '○') {
-                winner('"○" is Win !');
+            if (boxes[winPositions[key][0]].classList.contains('icon-cross') &&
+                boxes[winPositions[key][1]].classList.contains('icon-cross') &&
+                boxes[winPositions[key][2]].classList.contains('icon-cross')) {
+                winner('Crosses Win');
+            } else if (boxes[winPositions[key][0]].classList.contains('icon-radio') &&
+                boxes[winPositions[key][1]].classList.contains('icon-radio') &&
+                boxes[winPositions[key][2]].classList.contains('icon-radio')) {
+                winner('Circles Win');
             }
         }
     };
@@ -72,8 +73,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
     boxes.forEach(box => {
         box.addEventListener('click', () => {
-            step(box);
             soundStep.play();
+            step(box);
             findOutTheWinner();
             draw();
         }, { once: true });
