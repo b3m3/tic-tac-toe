@@ -15,7 +15,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     const addStyle = (sound, status) => {
         title.textContent = `${status}`;
-        title.style.animation = 'animtitle .7s linear';
+        title.style.animation = 'animtitle .55s linear';
         wrapp.style.opacity = '.45';
         wrapp.style.pointerEvents = 'none';
         sound.play();
